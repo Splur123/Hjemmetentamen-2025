@@ -5,11 +5,9 @@ const mongoose = require('mongoose');
 const apiRoutes = require('./routes/api');
 const app = express();
 
-// Connect til MongoDB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://mongodb.alias.ikt-fag.no:27017/hjemmetentamen', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(() => console.log('MongoDB connected'))
+// Connect to MongoDB
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://mongodb.alias.ikt-fag.no:27017/hjemmetentamen')
+  .then(() => console.log('MongoDB connected'))
   .catch(err => console.error('MongoDB connection error:', err));
 
 app.set('view engine', 'ejs');
@@ -17,7 +15,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(express.json()); // KRITISK: Mangler for å håndtere JSON
 
 // Middleware
 const logger = require('./middleware/logger');
