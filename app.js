@@ -6,7 +6,7 @@ const apiRoutes = require('./routes/api');
 const app = express();
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://mongodb.alias.ikt-fag.no:27017/hjemmetentamen')
+mongoose.connect('mongodb://10.12.hal9000.201:27017/hjemmetentamen')
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.error('MongoDB connection error:', err));
 
